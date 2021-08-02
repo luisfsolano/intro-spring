@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -28,6 +29,14 @@ public class PersonasController {
     public ResponseEntity<Object> buscarPorCedula(@PathVariable(value = "cedula") String cedula) {
         Persona persona = personaService.buscarPorCedula(cedula);
         return ResponseEntity.ok().body(persona);
+    }
+
+    @GetMapping(value="/agregarCuenta")
+    public ResponseEntity<Object> agregarCuenta(@RequestBody Persona persona) {
+        Persona personaDB = personaService.buscarPorId(persona.getId());
+        personaDB.getCuentas().addAll(persona.getCuentas());
+        personaService.guardar(personaDB);
+        return ResponseEntity.ok().body(personaDB);
     }
     
 }

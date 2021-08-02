@@ -23,5 +23,15 @@ public class PersonaServiceImpl implements IPersonaService{
     public Persona buscarPorCedula(String cedula) {
         return personaRepository.findByCedula(cedula);
     }
+
+    @Override
+    public Persona buscarPorId(Long id) {
+        return personaRepository.findById(id).get();
+    }
+
+    @Override
+    public Persona guardar(Persona persona) {
+        return personaRepository.save(persona);
+    }
     
 }

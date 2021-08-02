@@ -4,11 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "cuentas")
@@ -20,10 +17,6 @@ public class Cuenta {
     private String numeroCuenta;
     private String tipo;
     private Boolean activo;
-    @ManyToOne
-    @JoinColumn(name="persona_id", nullable=false)
-    @JsonIgnoreProperties("persona")
-    private Persona persona;
 
     /**
      * @return Long return the id
@@ -93,21 +86,6 @@ public class Cuenta {
      */
     public void setActivo(Boolean activo) {
         this.activo = activo;
-    }
-
-
-    /**
-     * @return Persona return the persona
-     */
-    public Persona getPersona() {
-        return persona;
-    }
-
-    /**
-     * @param persona the persona to set
-     */
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
 }
