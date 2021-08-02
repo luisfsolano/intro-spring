@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="personas")
 public class Persona {
@@ -24,6 +26,7 @@ public class Persona {
     private String cedula;
     
     @OneToMany(mappedBy="persona")
+    @JsonIgnoreProperties("persona")
     private List<Cuenta> cuentas;
 
     /**
